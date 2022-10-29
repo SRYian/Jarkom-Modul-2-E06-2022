@@ -17,6 +17,82 @@ Repositori Jarkom Modul 2 kelompok E06
 
 ## 1. WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Eden akan digunakan sebagai Web Server. Terdapat 2 Client yaitu SSS, dan Garden. Semua node terhubung pada router Ostania, sehingga dapat mengakses internet 
 
+
+Edit Network Configuration
+
+#### Ostania
+```
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 192.195.1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 192.195.2.1
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 192.195.3.1
+	netmask 255.255.255.0
+
+```
+
+
+#### Wise
+```
+auto eth0
+iface eth0 inet static
+	address 192.195.3.2
+	netmask 255.255.255.0
+	gateway 192.195.3.1
+```
+
+#### SSS
+```
+auto eth0
+iface eth0 inet static
+	address 192.195.1.2
+	netmask 255.255.255.0
+	gateway 192.195.1.1
+```
+
+
+#### Garden
+```
+auto eth0
+iface eth0 inet static
+	address 192.195.1.3
+	netmask 255.255.255.0
+	gateway 192.195.1.1
+```
+
+
+#### Berlint 
+```
+auto eth0
+iface eth0 inet static
+	address 192.195.2.2
+	netmask 255.255.255.0
+	gateway 192.195.2.1
+```
+
+
+#### Eden
+```
+auto eth0
+iface eth0 inet static
+	address 192.195.2.3
+	netmask 255.255.255.0
+	gateway 192.195.2.1
+```
+
+
+Agar node-node lainnya dapat mengakses internet, jalankan command berikut dan gunakan IP DNS dari Ostania.
 ```
 nameserver 192.168.122.1 > /etc/resolv.conf
 ```
@@ -24,7 +100,8 @@ nameserver 192.168.122.1 > /etc/resolv.conf
 Lakukan untuk setiap node agar terhubung dan mendapatkan koneksi internet.
 
 Lakukan testing dengan ping ke google.com untuk mengetahui apakah sudah terkoneksi atau belum.
-
+Contonya pada Eden:
+<img width="395" alt="image" src="https://user-images.githubusercontent.com/72675854/198837308-46681652-5a17-4031-8538-0fb8f73086f0.png">
 
 
 ## 2. Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise 
