@@ -22,6 +22,27 @@ Repositori Jarkom Modul 2 kelompok E06
 
 ## 5. Agar dapat tetap dihubungi jika server WISE bermasalah, buatlah juga Berlint sebagai DNS Slave untuk domain utama
 
+### a. `/etc/bind/named.conf.local` (Wise)
+```
+echo 'zone "wise.E06.com" {
+     type master;
+     notify yes;
+     also-notify { 192.195.2.2; };
+     allow-transfer { 192.195.2.2; };
+
+};
+...
+```
+
+### b. `/etc/bind/named.conf.local` (Berlint)
+```
+echo 'zone "wise.E06.com" {
+    type slave;
+    masters { 192.195.3.2; };
+    file "/var/lib/bind/wise.E06.com";
+};
+```
+
 ## 6. Karena banyak informasi dari Handler, buatlah subdomain yang khusus untuk operation yaitu operation.wise.yyy.com dengan alias www.operation.wise.yyy.com yang didelegasikan dari WISE ke Berlint dengan IP menuju ke Eden dalam folder operation 
 
 ## 7. Untuk informasi yang lebih spesifik mengenai Operation Strix, buatlah subdomain melalui Berlint dengan akses strix.operation.wise.yyy.com dengan alias
