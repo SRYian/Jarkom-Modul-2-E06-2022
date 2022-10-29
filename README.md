@@ -39,8 +39,7 @@ www.strix.operation.wise.yyy.com yang mengarah ke Eden
 
 ## 13. Loid juga meminta Franky untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.eden.wise.yyy.com/public/js menjadi www.eden.wise.yyy.com/js 
 
-## 14. Loid meminta agar www.strix.operation.wise.yyy.com hanya bisa diakses dengan
-port 15000 dan port 15500 
+## 14. Loid meminta agar www.strix.operation.wise.yyy.com hanya bisa diakses dengan port 15000 dan port 15500 
 
 ## 15. dengan autentikasi username Twilight dan password opStrix dan file di /var/www/strix.operation.wise.yyy 
 
