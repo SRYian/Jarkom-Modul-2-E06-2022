@@ -12,6 +12,9 @@ Repositori Jarkom Modul 2 kelompok E06
 </p>
 </details>
 
+
+![layout](https://user-images.githubusercontent.com/72675854/198836914-1877474f-ca78-4558-a860-cc4f3ed9001c.jpg)
+
 ## 1. WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Eden akan digunakan sebagai Web Server. Terdapat 2 Client yaitu SSS, dan Garden. Semua node terhubung pada router Ostania, sehingga dapat mengakses internet 
 
 ```
