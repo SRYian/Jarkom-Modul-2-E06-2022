@@ -229,7 +229,7 @@ kemudian pada wise dan berlint lakukan berikut:
 echo 	"options {
 		directory "/var/cache/bind";
 		allow-query{any;};
-		auth-nxdomain no;    # conform to RFC1035
+		auth-nxdomain no;    
 		listen-on-v6 { any; };
 	};" > /etc/bind/named.conf.options
 ```
