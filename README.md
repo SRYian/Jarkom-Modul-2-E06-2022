@@ -172,6 +172,69 @@ service bind9 restart
 
 ## 7. Untuk informasi yang lebih spesifik mengenai Operation Strix, buatlah subdomain melalui Berlint dengan akses strix.operation.wise.yyy.com dengan alias www.strix.operation.wise.yyy.com yang mengarah ke Eden 
 
+Menambah subdomain operation dan strix.operation pada server wise dengan :
+```
+echo	"ns1       IN      A       192.193.3.2
+	ns2	    IN	A	  192.193.3.2
+	operation IN      NS      ns1
+	strix.operation	IN	NS	ns2" >> /etc/bind/wise/wise.E06.com
+
+```
+
+pada server berlint :
+```
+echo 'zone "operation.wise.E02.com" {
+	    type master;
+	    file "/etc/bind/operation/operation.wise.E06.com";
+	};
+
+	zone "strix.operation.wise.E02.com" {
+	    type master;
+	    file "/etc/bind/operation/strix.operation.wise.E06.com";
+	};' >> /etc/bind/named.conf.local
+```
+
+kemudian lakukan konfigurasi pada operation.wise.E06.com
+```
+echo "$TTL    604800
+	@       IN      SOA     operation.wise.E06.com. root.operation.wise.E06.com. (
+			     2022102601         ; Serial
+				 604800         ; Refresh
+				  86400         ; Retry
+				2419200         ; Expire
+				 604800 )       ; Negative Cache TTL
+	;
+	@       	IN      NS      operation.wise.E06.com.
+	@       	IN      A       192.193.2.3
+	www     	IN      CNAME   operation.wise.E06.com." > /etc/bind/operation/operation.wise.E06.com
+```
+
+Selanjutnya lakukan konfigurasi pada strix.operation.wise.E06.com
+```
+echo	"$TTL    604800
+	@       IN      SOA     strix.operation.wise.E06.com. root.strix.operation.wise.E06.com. (
+			     2022102601         ; Serial
+				 604800         ; Refresh
+				  86400         ; Retry
+				2419200         ; Expire
+				 604800 )       ; Negative Cache TTL
+	;
+	@       	IN      NS      strix.operation.wise.E06.com.
+	@       	IN      A       192.193.3.2
+	www     	IN      CNAME   strix.operation.wise.E06.com." > /etc/bind/operation/strix.operation.wise.E06.com
+```
+
+kemudian pada wise dan berlint lakukan berikut:
+```
+echo 	"options {
+		directory "/var/cache/bind";
+		allow-query{any;};
+		auth-nxdomain no;    # conform to RFC1035
+		listen-on-v6 { any; };
+	};" > /etc/bind/named.conf.options
+```
+lakukan restart pada kedua server
+
 ## 8. Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.wise.yyy.com. Pertama, Loid membutuhkan webserver dengan DocumentRoot pada /var/www/wise.yyy.com
 
 ## 9. Setelah itu, Loid juga membutuhkan agar url www.wise.yyy.com/index.php/home dapat menjadi menjadi www.wise.yyy.com/home 
