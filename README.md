@@ -183,12 +183,12 @@ echo	"ns1       IN      A       192.193.3.2
 
 pada server berlint :
 ```
-echo 'zone "operation.wise.E02.com" {
+echo 'zone "operation.wise.E06.com" {
 	    type master;
 	    file "/etc/bind/operation/operation.wise.E06.com";
 	};
 
-	zone "strix.operation.wise.E02.com" {
+	zone "strix.operation.wise.E06.com" {
 	    type master;
 	    file "/etc/bind/operation/strix.operation.wise.E06.com";
 	};' >> /etc/bind/named.conf.local
